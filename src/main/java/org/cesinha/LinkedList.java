@@ -23,7 +23,8 @@ public class LinkedList {
     }
 
     public LinkedList() {
-        makeEmpty();
+        head = null;
+        tail = null;
     }
 
     public Node getHead() {
@@ -36,6 +37,17 @@ public class LinkedList {
 
     public int getLength() {
         return length;
+    }
+
+    public void printList() {
+        StringBuilder sb = new StringBuilder();
+        Node temp = head;
+        while (temp != null) {
+            sb.append(temp.value);
+            if (temp.next != null) sb.append(" > ");
+            temp = temp.next;
+        }
+        System.out.println(sb);
     }
 
     public void append(int value) {
@@ -59,6 +71,39 @@ public class LinkedList {
             head = newNode;
         }
         length++;
+    }
+
+    public Node removeFirst() {
+        if (length == 0) return null;
+
+        Node temp = head;
+        head = head.next;
+        temp.next = null;
+        length--;
+
+        if (length == 0) {
+            tail = null;
+        }
+
+        return temp;
+    }
+
+    public Node removeLast() {
+        if (length == 0) return null;
+        Node temp = head;
+        Node pre = head;
+        while (temp.next != null) {
+            pre = temp;
+            temp = temp.next;
+        }
+        tail = pre;
+        tail.next = null;
+        length--;
+        if (length == 0) {
+            head = null;
+            tail = null;
+        }
+        return temp;
     }
 
     public Node get(int index) {
@@ -133,70 +178,8 @@ public class LinkedList {
         }
     }
 
-    public Node removeFirst() {
-        if (length == 0) return null;
-
-        Node temp = head;
-        head = head.next;
-        temp.next = null;
-        length--;
-
-        if (length == 0) {
-            tail = null;
-        }
-
-        return temp;
-    }
-
-    public Node removeLast() {
-        if (length == 0) return null;
-        Node temp = head;
-        Node pre = head;
-        while (temp.next != null) {
-            pre = temp;
-            temp = temp.next;
-        }
-        tail = pre;
-        tail.next = null;
-        length--;
-        if (length == 0) {
-            head = null;
-            tail = null;
-        }
-        return temp;
-    }
-
-    public void printList() {
-        Node temp = head;
-        while (temp != null) {
-            System.out.println(temp.value);
-            temp = temp.next;
-        }
-    }
-
-    public void printAll() {
-        if (length == 0) {
-            System.out.println("Head: null");
-            System.out.println("Tail: null");
-        } else {
-            System.out.println("Head: " + head.value);
-            System.out.println("Tail: " + tail.value);
-        }
-        System.out.println("Length:" + length);
-        System.out.println("\nLinked List:");
-        if (length == 0) {
-            System.out.println("empty");
-        } else {
-            printList();
-        }
-    }
-
-    public void makeEmpty() {
-        head = null;
-        tail = null;
-    }
-
-    ///////////////////////////////////////////////
+    ///////////////////LeetCode////////////////////
+    //////////////////Challenges///////////////////
 
     public Node findMiddleNode() {
         Node slow = head;

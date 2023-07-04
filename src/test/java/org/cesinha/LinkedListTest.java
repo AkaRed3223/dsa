@@ -108,7 +108,17 @@ public class LinkedListTest {
 
     @Test
     @Order(11)
-    public void testReverseBetween() {
+    public void testReverseBetweenEmptyList() {
+        LinkedList myList = new LinkedList();
+        myList.reverseBetween(1, 3);
+        assertNull(myList.getHead());
+        assertNull(myList.getTail());
+        assertEquals(0, myList.getLength());
+    }
+
+    @Test
+    @Order(12)
+    public void testReverseBetween1and3() {
         LinkedList myList = new LinkedList(1);
         myList.append(2);
         myList.append(3);
@@ -122,5 +132,23 @@ public class LinkedListTest {
 
         assertEquals(4, nodeA.value);
         assertEquals(2, nodeB.value);
+    }
+
+    @Test
+    @Order(13)
+    public void testReverseBetween0and3() {
+        LinkedList myList = new LinkedList(1);
+        myList.append(2);
+        myList.append(3);
+        myList.append(4);
+        myList.append(5);
+
+        myList.reverseBetween(0, 3);
+
+        var nodeA = myList.getHead();
+        var nodeB = myList.getHead().next.next.next;
+
+        assertEquals(4, nodeA.value);
+        assertEquals(1, nodeB.value);
     }
 }
