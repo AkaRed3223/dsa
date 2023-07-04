@@ -111,6 +111,7 @@ class DoublyLinkedListTest {
     @Order(8)
     void testRemoveLastEmptyList() {
         var dll = new DoublyLinkedList();
+        dll.removeLast();
         assertNull(dll.getTail());
         assertNull(dll.getHead());
         assertEquals(0, dll.getLength());
@@ -147,5 +148,47 @@ class DoublyLinkedListTest {
         assertNull(dll.getHead().prev);
         assertNull(dll.getTail().next);
         assertNull(dll.getTail().prev);
+    }
+
+    @Test
+    @Order(11)
+    void testRemoveFirst() {
+        var dll = new DoublyLinkedList(4);
+        dll.append(11);
+        dll.append(3);
+        dll.append(23);
+        dll.append(7);
+
+        var removedNode = dll.removeFirst();
+        assertEquals(4, removedNode.value);
+
+        assertEquals(11, dll.getHead().value);
+        assertEquals(7, dll.getTail().value);
+        assertEquals(4, dll.getLength());
+        assertNull(dll.getTail().next);
+        assertNotNull(dll.getTail().prev);
+    }
+
+    @Test
+    @Order(12)
+    void testRemoveFirstSingleNode() {
+        var dll = new DoublyLinkedList(1);
+        var node = dll.removeFirst();
+        assertEquals(1, node.value);
+        assertNull(node.prev);
+        assertNull(node.next);
+        assertNull(dll.getTail());
+        assertNull(dll.getHead());
+        assertEquals(0, dll.getLength());
+    }
+
+    @Test
+    @Order(13)
+    void testRemoveFirstEmptyList() {
+        var dll = new DoublyLinkedList();
+        dll.removeFirst();
+        assertNull(dll.getTail());
+        assertNull(dll.getHead());
+        assertEquals(0, dll.getLength());
     }
 }
