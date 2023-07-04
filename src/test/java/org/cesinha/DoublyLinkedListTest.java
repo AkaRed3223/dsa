@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -190,5 +192,101 @@ class DoublyLinkedListTest {
         assertNull(dll.getTail());
         assertNull(dll.getHead());
         assertEquals(0, dll.getLength());
+    }
+
+    @Test
+    @Order(14)
+    void testGet() {
+        var dll = new DoublyLinkedList(1);
+        dll.append(2);
+        dll.append(3);
+        assertEquals(3, dll.getLength());
+        assertEquals(2, dll.get(1).value);
+        assertEquals(3, dll.getLength());
+
+    }
+
+    @Test
+    @Order(15)
+    void testGetEmptyList() {
+        var dll = new DoublyLinkedList();
+        assertNull(dll.get(3)); //random number
+        assertEquals(0, dll.getLength());
+    }
+
+    @Test
+    @Order(16)
+    void testSet() {
+        var dll = new DoublyLinkedList(11);
+        dll.append(3);
+        dll.append(23);
+        dll.append(7);
+
+        var setResult = dll.set(1, 4);
+
+        assertTrue(setResult);
+        assertEquals(4, dll.get(1).value);
+        assertEquals(4, dll.getLength());
+    }
+
+    @Test
+    @Order(17)
+    void testSetEmptyList() {
+        var dll = new DoublyLinkedList();
+        assertFalse(dll.set(1, 4));
+        assertEquals(0, dll.getLength());
+    }
+
+    @Test
+    @Order(18)
+    void testInsert() {
+        var dll = new DoublyLinkedList(11);
+        dll.append(3);
+        dll.append(23);
+        dll.append(7);
+
+        var setResult = dll.insert(1, 4);
+
+        assertTrue(setResult);
+        assertEquals(4, dll.get(1).value);
+        assertEquals(5, dll.getLength());
+    }
+
+    @Test
+    @Order(19)
+    void testInsertEmptyList() {
+        var dll = new DoublyLinkedList();
+
+        var setResult = dll.insert(0, 11);
+
+        assertTrue(setResult);
+        assertEquals(11, dll.get(0).value);
+        assertEquals(1, dll.getLength());
+    }
+
+    @Test
+    @Order(20)
+    void testInsertOutOfBounds() {
+        var dll = new DoublyLinkedList(11);
+        dll.append(3);
+        dll.append(23);
+        dll.append(7);
+
+        var setResult = dll.insert(99, 11);
+        assertFalse(setResult);
+        assertEquals(4, dll.getLength());
+    }
+
+    @Test
+    @Order(21)
+    void testRemove() {
+        var dll = new DoublyLinkedList(11);
+        dll.append(3);
+        dll.append(23);
+        dll.append(7);
+
+        var removedNode = dll.remove(2);
+        assertEquals(23, removedNode.value);
+        assertEquals(3, dll.getLength());
     }
 }

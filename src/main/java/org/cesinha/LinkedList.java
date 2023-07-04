@@ -44,7 +44,7 @@ public class LinkedList {
         Node temp = head;
         while (temp != null) {
             sb.append(temp.value);
-            if (temp.next != null) sb.append(" > ");
+            if (temp.next != null) sb.append(" -> ");
             temp = temp.next;
         }
         System.out.println(sb);
