@@ -186,4 +186,59 @@ public class DoublyLinkedList {
         head.value = tail.value;
         tail.value = temp;
     }
+
+    public void reverse() {
+        Node temp = head;
+        head = tail;
+        tail = temp;
+
+        for (int i = 0; i < length; i++) {
+            Node before = temp.prev;
+            Node after = temp.next;
+            temp.prev = after;
+            temp.next = before;
+            temp = after;
+        }
+    }
+
+    public boolean isPalindrome() {
+        if (length <= 1) return true;
+
+        Node forwardNode = head;
+        Node backwardNode = tail;
+
+        for (int i = 0; i < length / 2; i++) {
+            if (forwardNode.value != backwardNode.value) return false;
+            forwardNode = forwardNode.next;
+            backwardNode = backwardNode.prev;
+        }
+        return true;
+    }
+
+    public void swapPairs() {
+        Node dummy = new Node(0);
+        dummy.next = head;
+        Node prev = dummy;
+
+        while (head != null && head.next != null) {
+            Node firstNode = head;
+            Node secondNode = head.next;
+
+            prev.next = secondNode;
+            firstNode.next = secondNode.next;
+            secondNode.next = firstNode;
+
+            secondNode.prev = prev;
+            firstNode.prev = secondNode;
+            if (firstNode.next != null) {
+                firstNode.next.prev = firstNode;
+            }
+
+            head = firstNode.next;
+            prev = firstNode;
+        }
+
+        head = dummy.next;
+        if (head != null) head.prev = null;
+    }
 }
