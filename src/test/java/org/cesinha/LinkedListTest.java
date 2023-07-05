@@ -8,7 +8,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class LinkedListTest {
+class LinkedListTest {
 
     @Test
     @Order(1)
@@ -23,21 +23,21 @@ public class LinkedListTest {
 
     @Test
     @Order(2)
-    public void testFindMiddleNodeEmptyList() {
+    void testFindMiddleNodeEmptyList() {
         LinkedList linkedList = new LinkedList();
         assertNull(linkedList.findMiddleNode());
     }
 
     @Test
     @Order(3)
-    public void testFindMiddleNodeSingleNode() {
+    void testFindMiddleNodeSingleNode() {
         LinkedList linkedList = new LinkedList(3);
         assertEquals(3, linkedList.findMiddleNode().value);
     }
 
     @Test
     @Order(4)
-    public void testHasLoopReturnTrueForListWithLoop() {
+    void testHasLoopReturnTrueForListWithLoop() {
         LinkedList myList = new LinkedList(1);
         myList.append(2);
         myList.append(3);
@@ -49,7 +49,7 @@ public class LinkedListTest {
 
     @Test
     @Order(5)
-    public void testHasLoopReturnFalseForListWithNoLoop() {
+    void testHasLoopReturnFalseForListWithNoLoop() {
         LinkedList myList = new LinkedList(1);
         myList.append(2);
         myList.append(3);
@@ -60,21 +60,21 @@ public class LinkedListTest {
 
     @Test
     @Order(6)
-    public void testHasLoopReturnFalseForEmptyList() {
+    void testHasLoopReturnFalseForEmptyList() {
         LinkedList myList = new LinkedList();
         assertFalse(myList.hasLoop());
     }
 
     @Test
     @Order(7)
-    public void testHasLoopReturnFalseForListWithOneNode() {
+    void testHasLoopReturnFalseForListWithOneNode() {
         LinkedList myList = new LinkedList(3);
         assertFalse(myList.hasLoop());
     }
 
     @Test
     @Order(8)
-    public void testFindKthFromEnd1() {
+    void testFindKthFromEnd1() {
         LinkedList myList = new LinkedList(1);
         myList.append(2);
         myList.append(3);
@@ -86,7 +86,7 @@ public class LinkedListTest {
 
     @Test
     @Order(9)
-    public void testFindKthFromEnd2() {
+    void testFindKthFromEnd2() {
         LinkedList myList = new LinkedList(1);
         myList.append(2);
         myList.append(3);
@@ -99,7 +99,7 @@ public class LinkedListTest {
 
     @Test
     @Order(10)
-    public void testFindKthFromEnd3() {
+    void testFindKthFromEnd3() {
         LinkedList myList = new LinkedList(1);
         myList.append(2);
         myList.append(3);
@@ -108,7 +108,7 @@ public class LinkedListTest {
 
     @Test
     @Order(11)
-    public void testReverseBetweenEmptyList() {
+    void testReverseBetweenEmptyList() {
         LinkedList myList = new LinkedList();
         myList.reverseBetween(1, 3);
         assertNull(myList.getHead());
@@ -118,7 +118,7 @@ public class LinkedListTest {
 
     @Test
     @Order(12)
-    public void testReverseBetween1and3() {
+    void testReverseBetween1and3() {
         LinkedList myList = new LinkedList(1);
         myList.append(2);
         myList.append(3);
@@ -136,7 +136,7 @@ public class LinkedListTest {
 
     @Test
     @Order(13)
-    public void testReverseBetween0and3() {
+    void testReverseBetween0and3() {
         LinkedList myList = new LinkedList(1);
         myList.append(2);
         myList.append(3);
