@@ -14,6 +14,7 @@ class StackTest {
     @Order(1)
     void testConstructor() {
         var stack = new Stack(3);
+
         assertNotNull(stack);
         assertEquals(1, stack.getHeight());
         assertEquals(3, stack.getTop().value);
@@ -24,6 +25,7 @@ class StackTest {
     @Order(2)
     void testConstructorEmpty() {
         var emptyStack = new Stack();
+
         assertNull(emptyStack.getTop());
         assertEquals(0, emptyStack.getHeight());
     }
@@ -32,9 +34,6 @@ class StackTest {
     @Order(3)
     void testPush() {
         var stack = new Stack(2);
-
-        assertEquals(2, stack.getTop().value);
-        assertEquals(1, stack.getHeight());
 
         stack.push(1);
 
@@ -47,8 +46,6 @@ class StackTest {
     @Order(4)
     void testPushEmpty() {
         var emptyStack = new Stack();
-        assertNull(emptyStack.getTop());
-        assertEquals(0, emptyStack.getHeight());
 
         emptyStack.push(7);
 
@@ -58,13 +55,12 @@ class StackTest {
     }
 
     @Test
+    @Order(5)
     void testPop() {
         var stack = new Stack(7);
         stack.push(23);
         stack.push(3);
         stack.push(11);
-        assertEquals(11, stack.getTop().value);
-        assertEquals(4, stack.getHeight());
 
         var node = stack.pop();
 
@@ -74,12 +70,12 @@ class StackTest {
     }
 
     @Test
+    @Order(6)
     void testPopEmpty() {
         var emptyStack = new Stack();
-        assertEquals(0, emptyStack.getHeight());
-        assertNull(emptyStack.getTop());
 
         var node = emptyStack.pop();
+
         assertNull(node);
         assertNull(emptyStack.getTop());
         assertEquals(0, emptyStack.getHeight());
